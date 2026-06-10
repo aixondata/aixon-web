@@ -304,9 +304,65 @@
   <p class="s-label reveal" style="text-align:center">Empieza hoy</p>
   <h2 class="reveal">¿Listo para llevar tu negocio<br>al siguiente nivel?</h2>
   <p class="reveal">Agenda una sesión gratuita de diagnóstico. Sin compromisos.</p>
-  <a href="mailto:contacto@aixon.co?subject=Sesión%20gratuita%20-%20AIXON" class="btn-main reveal glow-pulse" style="font-size:1rem;padding:1rem 2.5rem">
+  <button onclick="abrirModal()" class="btn-main reveal glow-pulse" style="font-size:1rem;padding:1rem 2.5rem;border:none;cursor:pointer">
     Agendar sesión gratuita &rarr;
-  </a>
+  </button>
+</div>
+
+<!-- MODAL FORMULARIO -->
+<div id="modal-sesion" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(2,11,30,0.92);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:1rem">
+  <div style="background:linear-gradient(135deg,#0a1830 0%,#0d1f3c 100%);border:1px solid rgba(0,212,255,0.2);border-radius:16px;width:100%;max-width:520px;padding:2.5rem;position:relative;box-shadow:0 0 60px rgba(0,212,255,0.1)">
+    <button onclick="cerrarModal()" style="position:absolute;top:1rem;right:1.2rem;background:none;border:none;color:#A0C0E8;font-size:1.5rem;cursor:pointer;line-height:1">&times;</button>
+    <p style="color:#00D4FF;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem">Sesión gratuita</p>
+    <h3 style="color:#fff;font-family:'Exo 2',sans-serif;font-size:1.4rem;margin-bottom:.3rem">Diagnóstico sin costo</h3>
+    <p style="color:#A0C0E8;font-size:.9rem;margin-bottom:1.8rem">Cuéntanos sobre tu negocio y te contactamos en menos de 24 horas.</p>
+
+    <div id="form-success" style="display:none;text-align:center;padding:2rem 0">
+      <div style="font-size:3rem;margin-bottom:1rem">✅</div>
+      <h4 style="color:#00D4FF;font-family:'Exo 2',sans-serif;margin-bottom:.5rem">¡Mensaje enviado!</h4>
+      <p style="color:#A0C0E8;font-size:.9rem">Te contactaremos a la brevedad en el WhatsApp o correo que nos dejaste.</p>
+      <button onclick="cerrarModal()" style="margin-top:1.5rem;background:linear-gradient(135deg,#2563EB,#00D4FF);border:none;color:#fff;padding:.8rem 2rem;border-radius:8px;cursor:pointer;font-family:'Exo 2',sans-serif;font-weight:600">Cerrar</button>
+    </div>
+
+    <form id="form-sesion" action="https://formspree.io/f/mojzlbdo" method="POST">
+      <div style="display:grid;gap:1rem">
+        <div>
+          <label style="color:#A0C0E8;font-size:.82rem;display:block;margin-bottom:.4rem">Nombre completo *</label>
+          <input type="text" name="nombre" required placeholder="Tu nombre" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:.75rem 1rem;color:#fff;font-size:.95rem;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='#00D4FF'" onblur="this.style.borderColor='rgba(0,212,255,0.2)'">
+        </div>
+        <div>
+          <label style="color:#A0C0E8;font-size:.82rem;display:block;margin-bottom:.4rem">WhatsApp *</label>
+          <input type="tel" name="whatsapp" required placeholder="Ej: 3001234567" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:.75rem 1rem;color:#fff;font-size:.95rem;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='#00D4FF'" onblur="this.style.borderColor='rgba(0,212,255,0.2)'">
+        </div>
+        <div>
+          <label style="color:#A0C0E8;font-size:.82rem;display:block;margin-bottom:.4rem">Empresa / Negocio</label>
+          <input type="text" name="empresa" placeholder="Nombre de tu empresa (opcional)" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:.75rem 1rem;color:#fff;font-size:.95rem;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='#00D4FF'" onblur="this.style.borderColor='rgba(0,212,255,0.2)'">
+        </div>
+        <div>
+          <label style="color:#A0C0E8;font-size:.82rem;display:block;margin-bottom:.4rem">Servicio de interés</label>
+          <select name="servicio" style="width:100%;background:#0d1f3c;border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:.75rem 1rem;color:#A0C0E8;font-size:.95rem;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='#00D4FF'" onblur="this.style.borderColor='rgba(0,212,255,0.2)'">
+            <option value="">Selecciona un servicio...</option>
+            <option>Tecnología e IA</option>
+            <option>Marketing Digital</option>
+            <option>Panel de Control / Dashboard</option>
+            <option>Inteligencia de Mercado</option>
+            <option>Informes y Documentación</option>
+            <option>Capacitaciones</option>
+            <option>No sé cuál necesito</option>
+          </select>
+        </div>
+        <div>
+          <label style="color:#A0C0E8;font-size:.82rem;display:block;margin-bottom:.4rem">Cuéntanos sobre tu negocio</label>
+          <textarea name="mensaje" rows="3" placeholder="¿Qué problema quieres resolver?" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:.75rem 1rem;color:#fff;font-size:.95rem;outline:none;resize:vertical;box-sizing:border-box;font-family:inherit" onfocus="this.style.borderColor='#00D4FF'" onblur="this.style.borderColor='rgba(0,212,255,0.2)'"></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="Nueva sesión gratuita — AIXON">
+        <input type="hidden" name="_replyto" id="reply-email" value="">
+        <button type="submit" id="btn-enviar" style="width:100%;background:linear-gradient(135deg,#2563EB,#00D4FF);border:none;color:#fff;padding:1rem;border-radius:10px;font-family:'Exo 2',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;letter-spacing:.04em;transition:opacity .2s">
+          Enviar solicitud &rarr;
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <!-- FOOTER -->

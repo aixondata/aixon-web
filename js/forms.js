@@ -6,7 +6,7 @@
   // ── Modal ──────────────────────────────────────────────────────────────────
   window.abrirModal = function (plan) {
     var modal = document.getElementById('modal-sesion');
-    modal.style.display = 'flex';
+    modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
     // Si se abrió desde un plan, preseleccionar servicio
     if (plan) {
